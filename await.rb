@@ -1,6 +1,7 @@
 require 'fiber'
 
-def await(obj)
+
+def await(wait_for_obj)
+  $eloop.call_later(wait_for_obj, 0, Fiber.current)
   Fiber.yield
-  puts 'await resume'
 end
