@@ -14,7 +14,7 @@ $eloop = EventLoop.new
 
 async def test3
   puts 'test3 before sleep'
-  asleep 1
+  asleep 10
   puts 'test3 after sleep'
 end
 
@@ -26,4 +26,5 @@ end
 
 
 $eloop.create_task(test2)
+$eloop.create_task(test3)
 $eloop.start
