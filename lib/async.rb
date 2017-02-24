@@ -1,6 +1,3 @@
-require 'fiber'
-
-
 def async(obj)
 
   def wrapper(func, *args)
@@ -18,13 +15,20 @@ def async(obj)
     original_fn = method(obj)
     define_method(obj) { |*args| wrapper(original_fn, *args) }
   elsif instance_of?Class
-     if self.methods.include?obj
-       original_fn = self.method(obj)
-     elsif self.instance_methods.include?obj
-       original_fn = instance_method(obj)
-     else
-       raise 'Unhandled case'
-     end
-     define_method(obj) { |*args| wrapper(original_fn, *args) }
+
+    # handling class methods
+    if self.methods.include?obj
+      original_fn = self.method(obj)
+      class_eval {define_method(:a_class_method) { |*args| wrapper(original_fn, *args) }}
+
+    # handling instance methods
+    elsif self.instance_methods.include?obj
+      original_fn = instance_method(obj)
+      define_method(obj) { |*args| wrapper(original_fn, *args) }
+
+    else
+      raise 'Unhandled case'
+    end
+
    end
 end

@@ -1,7 +1,6 @@
 require 'time'
 require 'fiber'
 
-
 class EventLoop
 
   attr_accessor :item
