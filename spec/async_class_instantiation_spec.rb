@@ -20,6 +20,9 @@ describe AsyncClass do
       expect(async_class.class.methods).to include(:class_method_with_params,
                                                    :class_method_without_params,
                                                    :class_method_not_async)
+
+      expect(async_class.class.methods).not_to include(:instance_method_without_params,
+                                                       :instance_method_with_params)
     end
 
   end

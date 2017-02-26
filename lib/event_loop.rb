@@ -4,11 +4,11 @@ require 'fiber'
 class EventLoop
 
   attr_accessor :item
+
   def initialize
     @queue = []
     @item = {}
   end
-
 
   def create_task(fn)
     self.call_later(fn, 0)
@@ -36,4 +36,5 @@ class EventLoop
 
   end
 
+  alias_method :add_task, :create_task
 end
