@@ -1,5 +1,9 @@
 # jellopy - Ruby async/await syntax      ![Jellopy] (https://i.imgur.com/7sGAV1k.png)
 
+```
+gem install jellopy
+```
+
 *Inspired by [Python 3.5 (PEP-0492)](https://www.python.org/dev/peps/pep-0492/)*
 
 Note that await has to be used only in functions with the async keyword.
