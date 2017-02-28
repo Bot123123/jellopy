@@ -93,6 +93,30 @@ describe EventLoop do
                                                            'instance_method_without_params',
                                                            'first_method after asleep'])
 
+    end
+
+    describe 'add_task alias' do
+      it 'await for instance method from instance method' do
+        event_loop = build(:event_loop)
+        async_class = build(:async_class)
+        $eloop = event_loop
+
+
+        class << async_class
+          async def await_for_instance_method
+            self.calls << {:time => Time.now, :method => 'await_for_instance_method'}
+            await self.instance_method_without_params
+            self.calls << {:time => Time.now, :method => 'after await'}
+          end
+        end
+
+        event_loop.add_task(async_class.await_for_instance_method)
+        event_loop.start
+
+        expect(async_class.calls.map{|i| i[:method]}).to eq(['await_for_instance_method',
+                                                             'instance_method_without_params',
+                                                             'after await'])
       end
+    end
   end
 end
