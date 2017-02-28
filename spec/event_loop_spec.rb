@@ -54,7 +54,7 @@ describe EventLoop do
       class << async_class
         async def await_for_instance_method
           self.calls << {:time => Time.now, :method => 'await_for_instance_method'}
-          asleep 0.1
+          asleep 0.2
           await self.instance_method_without_params
           self.calls << {:time => Time.now, :method => 'after await'}
         end
@@ -67,7 +67,7 @@ describe EventLoop do
                                                            'instance_method_without_params',
                                                            'after await'])
 
-      expect(async_class.calls[1][:time] - async_class.calls[0][:time]).to be_between(0.1, 0.2).inclusive
+      expect(async_class.calls[1][:time] - async_class.calls[0][:time]).to be_between(0.2, 0.3).inclusive
     end
 
     it 'zero-asleep' do
