@@ -9,11 +9,8 @@ gem install jellopy
 Note that await has to be used only in functions with the async keyword.
 
 
-```
-require_relative 'event_loop'
-require_relative 'async'
-require_relative 'await'
-require_relative 'asleep'
+```ruby
+require 'jellopy'
 
 $eloop = EventLoop.new
 
