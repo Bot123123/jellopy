@@ -1,4 +1,4 @@
-# jellopy - Ruby async/await syntax      ![Jellopy] (https://i.imgur.com/7sGAV1k.png)
+# ![Jellopy](https://i.imgur.com/7sGAV1k.png) jellopy - Ruby async/await syntax      
 ![Build](https://travis-ci.org/Bot123123/jellopy.svg?branch=master)
 ```
 gem install jellopy
